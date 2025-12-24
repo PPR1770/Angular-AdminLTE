@@ -1,0 +1,90 @@
+<section class="content">
+  <div class="container-fluid">
+
+    <!-- Small Info Boxes -->
+    <div class="row">
+      <div class="col-lg-3 col-6" *ngFor="let box of infoBoxes">
+        <div class="info-box" [ngClass]="box.bg">
+          <span class="info-box-icon"><i class="{{box.icon}}"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">{{box.title}}</span>
+            <span class="info-box-number">{{box.number}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card card-primary card-outline">
+          <div class="card-header"><h3 class="card-title">Sales</h3></div>
+          <div class="card-body">
+            <canvas id="salesChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-success card-outline">
+          <div class="card-header"><h3 class="card-title">Visitors</h3></div>
+          <div class="card-body">
+            <canvas id="visitorsChart" style="height:250px"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table Row -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-warning card-outline">
+          <div class="card-header">
+            <h3 class="card-title">Latest Users</h3>
+          </div>
+          <div class="card-body table-responsive p-0" style="height: 250px;">
+            <table class="table table-head-fixed text-nowrap">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{user.id}}</td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>
+                    <span class="badge" [ngClass]="user.role==='Admin'?'badge-danger':'badge-info'">{{user.role}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Cards -->
+    <div class="row">
+      <div class="col-md-3" *ngFor="let card of footerCards">
+        <div class="small-box" [ngClass]="card.bg">
+          <div class="inner">
+            <h3>{{card.number}}</h3>
+            <p>{{card.title}}</p>
+          </div>
+          <div class="icon">
+            <i class="{{card.icon}}"></i>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

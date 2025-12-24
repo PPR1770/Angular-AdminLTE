@@ -1,0 +1,59 @@
+<section class="content">
+<div class="container-fluid">
+
+<div class="card card-primary card-outline">
+<div class="card-header">
+  <h3 class="card-title">Users</h3>
+  <div class="card-tools">
+    <input class="form-control form-control-sm"
+           placeholder="Search"
+           [(ngModel)]="this.search"
+           (input)="applyFilter()">
+  </div>
+</div>
+
+<div class="card-body p-0">
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+  <th>Email</th>
+  <th>Role</th>
+  <th *ngIf="auth.isAdmin()">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let u of filteredUsers">
+  <td>{{u.email}}</td>
+  <td>
+    <span class="badge"
+      [ngClass]="u.role === 'Admin' ? 'badge-danger' : 'badge-info'">
+      {{u.role}}
+    </span>
+  </td>
+  <td *ngIf="auth.isAdmin()">
+    <button class="btn btn-sm btn-warning" (click)="openEdit(u)">
+      <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-sm btn-danger" (click)="delete(u.id)">
+      <i class="fas fa-trash"></i>
+    </button>
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="card-footer">
+  <button class="btn btn-primary btn-sm" (click)="openAdd()">Add User</button>
+</div>
+</div>
+
+<app-user-modal
+  [visible]="showModal"
+  [user]="selectedUser"
+  (close)="showModal=false"
+  (save)="save($event)">
+</app-user-modal>
+
+</div>
+</section>
